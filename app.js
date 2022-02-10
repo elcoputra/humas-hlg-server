@@ -3,6 +3,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var cron = require("./pkg/cron");
 
 var app = express();
 
@@ -35,5 +36,7 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+cron.taskDefault.start();
 
 module.exports = app;
