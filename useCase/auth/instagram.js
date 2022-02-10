@@ -1,24 +1,27 @@
 const axios = require("axios");
+const FormData = require("form-data");
 
 const longToken = async ({ body }) => {};
 
 const shortToken = async ({ code, clientId, clientSecret, redirectUri }) => {
   try {
     console.table([clientId, clientSecret, redirectUri, code]);
+
+    const form = new FormData();
+    form.append("client_id", clientId);
+    form.append("client_secret", clientSecret);
+    form.append("grant_type", "authorization_code");
+    form.append("redirect_uri", redirectUri);
+    form.append("code", code);
+
     const res = await axios.post(
       "https://api.instagram.com/oauth/access_token",
-      {
-        client_id: clientId,
-        client_secret: clientSecret,
-        grant_type: "authorization_code",
-        redirect_uri: redirectUri,
-        code: code,
-      }
+      form,
+      { headers: form.getHeaders() }
     );
-    console.log(res);
     return res;
   } catch (error) {
-    console.log(error);
+    console.log("error : ", error)
     return error;
   }
 };

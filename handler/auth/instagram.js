@@ -11,10 +11,8 @@ const generateShortToken = async (req) => {
       clientSecret: configInstagram.igAppSecret,
       redirectUri: configInstagram.igAppRedirectUri,
     });
-    console.log("error : ", error);
     return res;
   } catch (error) {
-    console.log("error : ", error);
     return {
       success: false,
       message: error.message,
