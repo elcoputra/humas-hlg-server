@@ -4,12 +4,13 @@ var router = express.Router();
 const instagramHandler = require("../../../handler/auth/instagram");
 
 /* GET users listing. */
-router.post("/generate_short_token", function (req, res, next) {
-  const res = await instagramHandler.generateShortToken(req);
-  res.send(res);
+router.post("/generate_short_token", async (req, res) => {
+  console.log("test");
+  const resIg = await instagramHandler.generateShortToken(req);
+  res.send(resIg);
 });
 
-router.post("/generate_long_token", function (req, res, next) {
+router.post("/generate_long_token", async (req, res) => {
   const sendData = {
     method: "post",
     body: req.body,
@@ -19,7 +20,7 @@ router.post("/generate_long_token", function (req, res, next) {
   res.send(sendData);
 });
 
-router.get("/", function (req, res, next) {
+router.get("/", async (req, res) => {
   const sendData = {
     method: "get",
     body: req.body,

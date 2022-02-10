@@ -13,10 +13,10 @@ const generateShortToken = async (req) => {
     });
     return res;
   } catch (error) {
-    res.send({
+    return {
       success: false,
       message: error.message,
-    });
+    };
   }
 };
 
@@ -24,16 +24,18 @@ const generateLongToken = async (req, res) => {
   try {
     const { code } = req.body;
     const res = instagramUseCase.longToken({ code });
-    res.code(201).send({
+    return {
       success: true,
       message: "Success generating long live token",
       data: {},
-    });
+    };
   } catch (error) {
-    res.send({
+    return {
       success: false,
       message: error.message,
       data: {},
-    });
+    };
   }
 };
+
+module.exports = { generateShortToken, generateLongToken };

@@ -1,6 +1,7 @@
 const axios = require("axios");
 
 const longToken = async ({ body }) => {};
+
 const shortToken = async ({ code, clientId, clientSecret, redirectUri }) => {
   try {
     const res = await axios.post(
@@ -19,3 +20,5 @@ const shortToken = async ({ code, clientId, clientSecret, redirectUri }) => {
     return error;
   }
 };
+
+module.exports = { longToken, shortToken };

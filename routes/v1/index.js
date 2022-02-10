@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 const contributionRouter = require("./contribution");
-const authRouter = require("./contribution");
+const authRouter = require("./auth");
 const testOnlyRouter = require("./test_only");
 
 app.use("/contribution", contributionRouter); // contribution
