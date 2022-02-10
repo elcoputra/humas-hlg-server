@@ -4,6 +4,7 @@ const longToken = async ({ body }) => {};
 
 const shortToken = async ({ code, clientId, clientSecret, redirectUri }) => {
   try {
+    console.table([clientId, clientSecret, redirectUri, code]);
     const res = await axios.post(
       "https://api.instagram.com/oauth/access_token",
       {
@@ -14,9 +15,10 @@ const shortToken = async ({ code, clientId, clientSecret, redirectUri }) => {
         code: code,
       }
     );
-
+    console.log(res);
     return res;
   } catch (error) {
+    console.log(error);
     return error;
   }
 };
